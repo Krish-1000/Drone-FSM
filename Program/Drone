@@ -1,0 +1,152 @@
+module drone (cs1,cs2,cs3,I1,I2,Ns1,Ns2,Ns3,P1,P2,P3);
+    input cs1,cs2,cs3,I1,I2;
+    wire n1,n2,n3,n4,n5,n6,n7,n8,n9,n10;
+    wire m1,m2,m3,m4,m5,m6,m7,m8,m9,m10;
+    output wire Ns1,Ns2,Ns3;
+    output wire P1,P2,P3;
+    wire[50:1] x;
+    wire[13:1]lf;
+
+
+    mux_16_1 a1 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h5), .Y(x[1]));
+    mux_16_1 a2 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h1), .Y(x[2]));
+    mux_16_1 a3 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h2), .Y(x[3]));
+    mux_16_1 a4 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h3), .Y(x[4])); 
+    mux_16_1 a5 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h9), .Y(x[5]));
+    
+
+    and5 b1 (.out(n1),.a(x[1]),.b(x[2]),.c(x[3]),.d(x[4]),.e(x[5]));
+    or5  c1(.out5(m1),.q(x[1]),.r(x[2]),.s(x[3]),.t(x[4]),.u(x[5]));
+    
+    mux_2_1 c2(.z(lf[1]), .sel(0), .z0(n1) , .z1(m1));
+
+    mux_16_1 a6 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h0), .Y(x[6]));
+    mux_16_1 a7 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h6), .Y(x[7]));
+    mux_16_1 a8 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h7), .Y(x[8]));
+    mux_16_1 a9 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h3), .Y(x[9]));
+    mux_16_1 a10 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h9), .Y(x[10]));
+    
+
+    and5 b2 (.out(n2),.a(x[6]),.b(x[7]),.c(x[8]),.d(x[9]),.e(x[10]));
+    or5  c3(.out5(m2),.q(x[6]),.r(x[7]),.s(x[8]),.t(x[9]),.u(x[10]));
+    
+    mux_2_1 c4(.z(lf[2]), .sel(0), .z0(n2) , .z1(m2));
+    or2 b4 ( .out2(Ns1), .f(n1), .g(n2));
+    and2 c5(.and2_out(P1),.aa(lf[1]), .ab(lf[2])); 
+    
+    mux_2_1 c6(.z(lf[3]), .sel(1), .z0(P1) , .z1(Ns1));
+    
+    mux_16_1 a11 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h5), .Y(x[11]));
+    mux_16_1 a12 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h6), .Y(x[12]));
+    mux_16_1 a13 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h7), .Y(x[13]));
+    mux_16_1 a14 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h8), .Y(x[14]));
+    mux_16_1 a15 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h9), .Y(x[15]));
+   
+
+
+    and5 b5 (.out(n3),.a(x[11]),.b(x[12]),.c(x[13]),.d(x[14]),.e(x[15]));
+    or5 c7(.out5(m3),.q(x[11]),.r(x[12]),.s(x[13]),.t(x[14]),.u(x[15]));
+    
+    mux_2_1 c8(.z(lf[4]), .sel(0), .z0(n3) , .z1(m3));
+
+    mux_16_1 a16 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h5), .Y(x[16]));
+    mux_16_1 a17 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h1), .Y(x[17]));
+    mux_16_1 a18 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h7), .Y(x[18]));
+    mux_16_1 a19 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h8), .Y(x[19]));
+    mux_16_1 a20 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h4), .Y(x[20]));
+    
+    
+    and5 b6 (.out(n4),.a(x[16]),.b(x[17]),.c(x[18]),.d(x[19]),.e(x[20]));
+    or5 c9 (.out5(m4),.q(x[16]),.r(x[17]),.s(x[18]),.t(x[19]),.u(x[20]));
+    
+    mux_2_1 c10(.z(lf[5]), .sel(0), .z0(n4) , .z1(m4));
+    
+
+    mux_16_1 a21 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h5), .Y(x[21]));
+    mux_16_1 a22 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h1), .Y(x[22]));
+    mux_16_1 a23 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h7), .Y(x[23]));
+    mux_16_1 a24 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h3), .Y(x[24]));
+    mux_16_1 a25 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h9), .Y(x[25]));
+    
+    
+    and5 b7 (.out(n5),.a(x[21]),.b(x[22]),.c(x[23]),.d(x[24]),.e(x[25]));
+    or5 c11 (.out5(m5),.q(x[21]),.r(x[22]),.s(x[23]),.t(x[24]),.u(x[25]));
+    
+    mux_2_1 c12(.z(lf[6]), .sel(0), .z0(n5) , .z1(m5)); 
+    
+
+    mux_16_1 a26 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h0), .Y(x[26]));
+    mux_16_1 a27 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h6), .Y(x[27]));
+    mux_16_1 a28 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h7), .Y(x[28]));
+    mux_16_1 a29 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h8), .Y(x[29]));
+    mux_16_1 a30 (.cs1(cs1),.cs2(cs2),.cs3(cs3),.I1(I1),.I2(I2),.s(4'h4), .Y(x[30]));
+ 
+    and5 b8 (.out(n6),.a(x[26]),.b(x[27]),.c(x[28]),.d(x[29]),.e(x[30]));
+    or5 c13(.out5(m6),.q(x[26]),.r(x[27]),.s(x[28]),.t(x[29]),.u(x[30]));
+    
+    mux_2_1 c14(.z(lf[7]), .sel(0), .z0(n6) , .z1(m6));
+    
+    or4 b9 (.out4(Ns2), .h(n3), .i(n4),.j(n5),.k(n6));
+     
+    
+    and4 c15(.and4_out(P2),.ac(lf[4]), .ad(lf[5]),.ae(lf[6]), .af(lf[7])); 
+    mux_2_1 c16(.z(lf[8]), .sel(1), .z0(P2) , .z1(Ns2));
+
+    
+    
+   
+    mux_16_1 a31 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h5), .Y(x[31]));
+    mux_16_1 a32 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h1), .Y(x[32]));
+    mux_16_1 a33 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h7), .Y(x[33]));
+    mux_16_1 a34 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h8), .Y(x[34]));
+    mux_16_1 a35 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h4), .Y(x[35]));
+    
+    and5 b10 (.out(n7),.a(x[31]),.b(x[32]),.c(x[33]),.d(x[34]),.e(x[35]));
+    or5 c17(.out5(m7),.q(x[31]),.r(x[32]),.s(x[33]),.t(x[34]),.u(x[35]));
+    
+    mux_2_1 c18(.z(lf[9]), .sel(0), .z0(n7) , .z1(m7));
+
+    mux_16_1 a36 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h5), .Y(x[36]));
+    mux_16_1 a37 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h1), .Y(x[37]));
+    mux_16_1 a38 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h2), .Y(x[38]));
+    mux_16_1 a39 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h3), .Y(x[39]));
+    mux_16_1 a40 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h4), .Y(x[40]));
+    
+    and5 b11 (.out(n8),.a(x[36]),.b(x[37]),.c(x[38]),.d(x[39]),.e(x[40]));
+    or5 c19 (.out5(m8),.q(x[36]),.r(x[37]),.s(x[38]),.t(x[39]),.u(x[40]));
+    
+    mux_2_1 c20(.z(lf[10]), .sel(0), .z0(n8) , .z1(m8));
+
+    mux_16_1 a41 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h0), .Y(x[41]));
+    mux_16_1 a42 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h6), .Y(x[42]));
+    mux_16_1 a43 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h7), .Y(x[43]));
+    mux_16_1 a44 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h8), .Y(x[44]));
+    mux_16_1 a45 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h4), .Y(x[45]));
+    
+    
+    and5 b12 (.out(n9),.a(x[41]),.b(x[42]),.c(x[43]),.d(x[44]),.e(x[45]));
+    or5 c21 (.out5(m9),.q(x[41]),.r(x[42]),.s(x[43]),.t(x[44]),.u(x[45]));
+    
+    mux_2_1 c22(.z(lf[11]), .sel(0), .z0(n9) , .z1(m9));
+    
+
+    mux_16_1 a46 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h5), .Y(x[46]));
+    mux_16_1 a47 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h6), .Y(x[47]));
+    mux_16_1 a48 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h2), .Y(x[48]));
+    mux_16_1 a49 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h3), .Y(x[49]));
+    mux_16_1 a50 (.cs1(cs1), .cs2(cs2), .cs3(cs3), .I1(I1), .I2(I2),.s(4'h9), .Y(x[50]));
+    
+    
+    
+    and5 b13 (.out(n10),.a(x[46]),.b(x[47]),.c(x[48]),.d(x[49]),.e(x[50]));
+    or5 b14 (.out5(m10), .q(x[46]),.r(x[47]),.s(x[48]),.t(x[49]),.u(x[50]));
+    
+    mux_2_1 c23(.z(lf[12]), .sel(0), .z0(n10) , .z1(m10));
+    
+    or4 b15 (.out4(Ns3), .h(n7), .i(n8), .j(n9), .k(n10));
+    and4 c24(.and4_out(P3), .ac(lf[9]), .ad(lf[10]), .ae(lf[11]), .af(lf[12]));
+    
+    mux_2_1 c25(.z(lf[13]), .sel(1), .z0(P3) , .z1(Ns3));
+    
+    
+endmodule

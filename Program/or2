@@ -1,0 +1,3 @@
+module or2(output out2, input f, input g);
+    assign out2 = f | g;
+endmodule

@@ -1,0 +1,4 @@
+module or5(output out5,input q,input r,input s, input t, input u );
+     assign out5= q | r | s | t | u ;
+    
+endmodule

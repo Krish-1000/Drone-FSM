@@ -1,0 +1,4 @@
+module and5 (output out,input a,input b,input c,input d,input e);
+     assign out= a & b & c & d & e;
+    
+endmodule

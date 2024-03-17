@@ -1,0 +1,22 @@
+module mux_16_1 (input cs1,cs2,cs3,I1,I2, 
+                 input [3:0]s,
+                 output reg Y);
+
+
+always @(*)
+begin
+    case(s)
+        4'h0: Y <= cs1;
+        4'h1: Y <= cs2;
+        4'h2: Y <= cs3;
+        4'h3: Y <= I1;
+        4'h4: Y <= I2;
+        4'h5: Y <= ~cs1;
+        4'h6: Y <= ~cs2;
+        4'h7: Y <= ~cs3;
+        4'h8: Y <= ~I1;
+        4'h9: Y <= ~I2;
+        default: Y = 1'b0;
+    endcase
+end
+endmodule

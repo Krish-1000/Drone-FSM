@@ -1,0 +1,4 @@
+`timescale 1ns / 1ps
+module mux_2_1(output z, input sel, input z0, input z1);
+    assign z = sel ? z1 : z0;
+endmodule

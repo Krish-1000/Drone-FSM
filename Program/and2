@@ -1,0 +1,4 @@
+module and2 (output and2_out,input aa,input ab);
+     assign and2_out= aa & ab;
+    
+endmodule

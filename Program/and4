@@ -1,0 +1,4 @@
+module and4 (output and4_out,input ac,input ad,input ae,input af);
+     assign and4_out= ac & ad & ae & af;
+    
+endmodule

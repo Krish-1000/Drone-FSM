@@ -1,0 +1,4 @@
+module or4(output out4,input h,input i,input j, input k );
+     assign out4= h | i | j | k ;
+    
+endmodule
